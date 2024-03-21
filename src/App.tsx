@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import CriarContatoPage from './pages/CriarContatoPage'
 import DetalhesContatoPage from './pages/DetalhesContatoPage'
+import { Provider } from 'react-redux'
+import store from './store'
 
 const rotas = createBrowserRouter([
   {
@@ -21,10 +23,12 @@ const rotas = createBrowserRouter([
 function App() {
   return (
     <>
-      <EstiloGlobal />
-      <Container>
-        <RouterProvider router={rotas} />
-      </Container>
+      <Provider store={store}>
+        <EstiloGlobal />
+        <Container>
+          <RouterProvider router={rotas} />
+        </Container>
+      </Provider>
     </>
   )
 }

@@ -2,6 +2,8 @@ import { Titulo } from '../../Styles'
 import { Container, ContainerContato, Img } from './styles'
 import ContatoAvatar from '../../icons/Contato.png'
 import ContatoClass from '../../models/Contato'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
 type Props = {
   nome: string
@@ -10,6 +12,7 @@ type Props = {
 }
 
 function Contato() {
+  const { itens } = useSelector((state: RootReducer) => state.contatos)
   const lista: ContatoClass[] = []
   function criarContato({ nome, numero, email }: Props) {
     lista.push(new ContatoClass(nome, numero, email))
@@ -24,7 +27,7 @@ function Contato() {
   return (
     <>
       <Container>
-        {lista.map((c) => {
+        {itens.map((c) => {
           return (
             <ContainerContato key={c.numero}>
               <Img src={ContatoAvatar} alt="" />
