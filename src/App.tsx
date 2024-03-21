@@ -1,16 +1,29 @@
 import EstiloGlobal, { Container } from './Styles'
-import CriarContato from './components/CriarContato'
-import DetalhesContato from './components/DetalhesContato'
-import ListaContatos from './containers/ListaContatos'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home'
+import CriarContatoPage from './pages/CriarContatoPage'
+import DetalhesContatoPage from './pages/DetalhesContatoPage'
 
+const rotas = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/contato',
+    element: <CriarContatoPage />
+  },
+  {
+    path: '/detalhes',
+    element: <DetalhesContatoPage />
+  }
+])
 function App() {
   return (
     <>
       <EstiloGlobal />
       <Container>
-        <ListaContatos />
-        {/* <CriarContato /> */}
-        {/* <DetalhesContato /> */}
+        <RouterProvider router={rotas} />
       </Container>
     </>
   )

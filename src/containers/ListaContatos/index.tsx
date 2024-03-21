@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import Contato from '../../components/Contato'
 import iconePesquisa from '../../icons/Searh-Icon.png'
 import { BotaoAdicionar, BotaoPesquisa, Campo, Container } from './styles'
 
 function ListaContatos() {
+  const navigate = useNavigate()
   return (
     <>
       <Container>
@@ -10,7 +12,7 @@ function ListaContatos() {
         <BotaoPesquisa type="button">
           <img src={iconePesquisa} alt="" />
         </BotaoPesquisa>
-        <BotaoAdicionar type="button">
+        <BotaoAdicionar type="button" onClick={() => navigate('/contato')}>
           <span>+</span>
         </BotaoAdicionar>
       </Container>

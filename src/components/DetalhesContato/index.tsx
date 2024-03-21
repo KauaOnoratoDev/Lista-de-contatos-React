@@ -2,12 +2,15 @@ import { Container, Header, Titulo } from '../../Styles'
 import setaEsquerda from '../../icons/Seta-Esquerda.png'
 import ContatoAvatar from '../../icons/Contato.png'
 import { ContainerBotoes, Informacoes, InformacoesContato } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 function DetalhesContato() {
+  const navigate = useNavigate()
+
   return (
     <>
       <Header>
-        <button type="button">
+        <button type="button" onClick={() => navigate('/')}>
           <img src={setaEsquerda} alt="" />
         </button>
         <Titulo>Detalhes do Contato</Titulo>
