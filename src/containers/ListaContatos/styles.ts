@@ -21,12 +21,6 @@ export const Campo = styled.input`
 export const BotaoPesquisa = styled.button`
   background-color: transparent;
   border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  &:hover {
-    scale: 1.2;
-  }
 `
 
 export const BotaoAdicionar = styled.button`

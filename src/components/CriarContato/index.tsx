@@ -47,7 +47,7 @@ function CriarContato() {
             />
             <label htmlFor="numero">Número</label>
             <input
-              type="text"
+              type="number"
               id="numero"
               onChange={(e) => setNumero(e.target.value)}
             />

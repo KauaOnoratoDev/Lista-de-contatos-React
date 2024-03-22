@@ -13,7 +13,7 @@ const initialState: ContatoState = {
   itens: [
     new Contato(
       'Kauã Santos Onorato',
-      '(99)9dd9999-9999',
+      '65999128926',
       'kaua-santos2004@outlook.com'
     )
   ],
@@ -45,9 +45,14 @@ const contatoSlice = createSlice({
     },
     pesquisa: (state, action: PayloadAction<string>) => {
       state.pesquisa = action.payload.toLowerCase()
+    },
+    remover: (state, action: PayloadAction<string>) => {
+      state.itens = state.itens.filter(
+        (tarefa) => tarefa.numero !== action.payload
+      )
     }
   }
 })
 
-export const { cadastrar, adicionar, pesquisa } = contatoSlice.actions
+export const { cadastrar, adicionar, pesquisa, remover } = contatoSlice.actions
 export default contatoSlice.reducer

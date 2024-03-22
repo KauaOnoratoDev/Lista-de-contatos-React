@@ -7,14 +7,15 @@ export const Container = styled.div`
 `
 
 export const ContainerContato = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 24px;
   cursor: pointer;
+  transition: 0.3s ease;
 
   &:hover {
-    scale: 1.05;
-    transition: 0.5s alternate;
+    transform: translate(5px);
   }
 `
 
