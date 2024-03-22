@@ -3,7 +3,7 @@ import setaEsquerda from '../../icons/Seta-Esquerda.png'
 import ContatoAvatar from '../../icons/Contato.png'
 import { ContainerBotoes, Informacoes, InformacoesContato } from './styles'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { cadastrar } from '../../store/reducers/Contato'
 import Contato from '../../models/Contato'
@@ -15,6 +15,17 @@ function CriarContato() {
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [numero, setNumero] = useState('')
+  const novoContato: Contato = {
+    nome: nome,
+    email: email,
+    numero: numero
+  }
+  const cadastrarContato = (e: FormEvent) => {
+    e.preventDefault()
+
+    dispatch(cadastrar(novoContato))
+    navigate('/')
+  }
 
   return (
     <>
@@ -25,7 +36,7 @@ function CriarContato() {
         <Titulo>Criar novo Contato</Titulo>
       </Header>
       <Container>
-        <InformacoesContato>
+        <InformacoesContato onSubmit={cadastrarContato}>
           <img src={ContatoAvatar} alt="" />
           <Informacoes>
             <label htmlFor="nome">Nome</label>
@@ -48,9 +59,7 @@ function CriarContato() {
             />
           </Informacoes>
           <ContainerBotoes>
-            <button type="button" onClick={dispatch(cadastrar(nome))}>
-              Salvar
-            </button>
+            <button type="submit">Salvar</button>
           </ContainerBotoes>
         </InformacoesContato>
       </Container>

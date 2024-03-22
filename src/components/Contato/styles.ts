@@ -10,6 +10,12 @@ export const ContainerContato = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.05;
+    transition: 0.5s alternate;
+  }
 `
 
 export const Img = styled.img`

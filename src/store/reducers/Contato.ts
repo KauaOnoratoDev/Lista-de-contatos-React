@@ -1,21 +1,28 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import Contato from '../../models/Contato'
 
+type ContatoState = {
+  itens: Contato[]
+}
+
+const initialState: ContatoState = {
+  itens: []
+}
+
 const contatoSlice = createSlice({
   name: 'contatos',
-  initialState: {
-    itens: [
-      new Contato(
-        'Kauã Santos Onorato',
-        '65999128926',
-        'kaua-santos2004@outlook.com'
-      )
-    ]
-  },
+  initialState,
   reducers: {
     cadastrar: (state, action: PayloadAction<Contato>) => {
       const item = action.payload
-      state.itens.push(new Contato(item.nome, item.numero, item.email))
+      const contatoExiste = state.itens.find((e) => e.numero === item.numero)
+      if (contatoExiste) {
+        alert('Contato já existe')
+      } else if (item.nome.length < 2 || item.numero.length <= 0) {
+        alert('Adicione um nome e um número para o novo contato')
+      } else {
+        state.itens.push(new Contato(item.nome, item.numero, item.email))
+      }
     }
   }
 })

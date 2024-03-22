@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { cores } from '../../Styles/cores'
 
-export const InformacoesContato = styled.div`
+export const InformacoesContato = styled.form`
   width: 100%;
   padding: 0 8px;
   display: flex;
