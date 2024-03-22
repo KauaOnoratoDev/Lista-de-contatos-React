@@ -3,10 +3,18 @@ import Contato from '../../models/Contato'
 
 type ContatoState = {
   itens: Contato[]
+  ultimoItem: Contato[]
 }
 
 const initialState: ContatoState = {
-  itens: []
+  itens: [
+    new Contato(
+      'Kauã Santos Onorato',
+      '(99)9dd9999-9999',
+      'kaua-santos2004@outlook.com'
+    )
+  ],
+  ultimoItem: []
 }
 
 const contatoSlice = createSlice({
@@ -23,9 +31,13 @@ const contatoSlice = createSlice({
       } else {
         state.itens.push(new Contato(item.nome, item.numero, item.email))
       }
+    },
+    adicionar: (state, action: PayloadAction<Contato>) => {
+      state.ultimoItem.pop()
+      state.ultimoItem.push(action.payload)
     }
   }
 })
 
-export const { cadastrar } = contatoSlice.actions
+export const { cadastrar, adicionar } = contatoSlice.actions
 export default contatoSlice.reducer
