@@ -7,14 +7,20 @@ import { useNavigate } from 'react-router-dom'
 import { adicionar } from '../../store/reducers/Contato'
 
 function Contato() {
-  const { itens } = useSelector((state: RootReducer) => state.contatos)
+  const { itens, pesquisa } = useSelector(
+    (state: RootReducer) => state.contatos
+  )
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const contatoFiltrado = () => {
+    return itens.filter((e) => e.nome.toLowerCase().search(pesquisa) >= 0)
+  }
 
   return (
     <>
       <Container>
-        {itens.map((c) => {
+        {contatoFiltrado().map((c) => {
           return (
             <ContainerContato
               key={c.numero}

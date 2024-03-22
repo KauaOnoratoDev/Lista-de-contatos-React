@@ -8,7 +8,9 @@ import { RootReducer } from '../../store'
 
 function DetalhesContato() {
   const navigate = useNavigate()
-  const { ultimoItem } = useSelector((state: RootReducer) => state.contatos)
+  const { nome, numero, email } = useSelector(
+    (state: RootReducer) => state.contatos
+  )
 
   return (
     <>
@@ -23,11 +25,11 @@ function DetalhesContato() {
           <img src={ContatoAvatar} alt="" />
           <Informacoes>
             <label htmlFor="nome">Nome</label>
-            <input type="text" id="nome" value={ultimoItem[0].nome} />
+            <input type="text" id="nome" value={nome} />
             <label htmlFor="numero">Número</label>
-            <input type="text" id="numero" value={ultimoItem[0].numero} />
+            <input type="text" id="numero" value={numero} />
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={ultimoItem[0].email} />
+            <input type="email" id="email" value={email} />
           </Informacoes>
           <ContainerBotoes>
             <button type="button">Editar</button>
