@@ -29,7 +29,8 @@ function Contato() {
                 const ultimoContato = {
                   nome: c.nome,
                   numero: c.numero,
-                  email: c.email
+                  email: c.email,
+                  id: c.id
                 }
                 dispatch(adicionar(ultimoContato))
               }}

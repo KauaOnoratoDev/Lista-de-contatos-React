@@ -4,25 +4,32 @@ import ContatoAvatar from '../../icons/Contato.png'
 import { ContainerBotoes, Informacoes, InformacoesContato } from './styles'
 import { useNavigate } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cadastrar } from '../../store/reducers/Contato'
 import Contato from '../../models/Contato'
+import { RootReducer } from '../../store'
 
 function CriarContato() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { itens } = useSelector((state: RootReducer) => state.contatos)
 
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [numero, setNumero] = useState('')
+  const [id, setId] = useState(
+    itens.length > 0 ? itens[itens.length - 1].id : 1
+  )
   const novoContato: Contato = {
     nome: nome,
     email: email,
-    numero: numero
+    numero: numero,
+    id: id
   }
   const cadastrarContato = (e: FormEvent) => {
     e.preventDefault()
 
+    setId(id + 1)
     dispatch(cadastrar(novoContato))
     navigate('/')
   }

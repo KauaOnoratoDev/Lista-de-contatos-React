@@ -5,13 +5,13 @@ import { ContainerBotoes, Informacoes, InformacoesContato } from './styles'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { adicionar, remover } from '../../store/reducers/Contato'
+import { editar, remover } from '../../store/reducers/Contato'
 import { useState } from 'react'
 
 function DetalhesContato() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { nome, numero, email } = useSelector(
+  const { nome, numero, email, id } = useSelector(
     (state: RootReducer) => state.contatos
   )
   const [nomeValor, setNomeValor] = useState(nome)
@@ -41,9 +41,9 @@ function DetalhesContato() {
             />
             <label htmlFor="numero">Número</label>
             <input
-              type="text"
+              type="number"
               id="numero"
-              value={numero}
+              value={numeroValor}
               disabled={!editando}
               onChange={(e) => setNumeroValor(e.target.value)}
             />
@@ -51,7 +51,7 @@ function DetalhesContato() {
             <input
               type="email"
               id="email"
-              value={email}
+              value={emailValor}
               disabled={!editando}
               onChange={(e) => setEmailValor(e.target.value)}
             />
@@ -71,6 +71,16 @@ function DetalhesContato() {
                 if (!editando) {
                   dispatch(remover(numero))
                   navigate('/')
+                } else {
+                  dispatch(
+                    editar({
+                      nome: nomeValor,
+                      numero: numeroValor,
+                      email: emailValor,
+                      id
+                    })
+                  )
+                  setEditando(!editando)
                 }
               }}
             >
